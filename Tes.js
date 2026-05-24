@@ -260,15 +260,6 @@ audio.addEventListener(
   }
 );
 
-audio.addEventListener(
-  "waiting",
-  () => {
-
-    title.innerText =
-      "Loading...";
-
-  }
-);
 
 /* =========================
    CLICK SONG CARD

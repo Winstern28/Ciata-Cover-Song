@@ -269,3 +269,36 @@ body{
   }
 
 }
+/* CONTROLS */
+
+.controls{
+  display:flex;
+  align-items:center;
+  gap:15px;
+}
+
+#prevBtn,
+#nextBtn{
+  background:#282828;
+
+  border:none;
+
+  width:45px;
+  height:45px;
+
+  border-radius:50%;
+
+  color:white;
+
+  font-size:18px;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+#prevBtn:hover,
+#nextBtn:hover{
+  background:#1DB954;
+  transform:scale(1.1);
+}

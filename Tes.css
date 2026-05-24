@@ -6,7 +6,11 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:Arial,sans-serif;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
 }
 
 /* =========================
@@ -14,7 +18,18 @@
 ========================= */
 
 :root{
-  --sidebar-width:45px;
+
+  --sidebar-width:60px;
+
+  --bg:#121212;
+  --card:#181818;
+  --hover:#282828;
+
+  --accent:#1DB954;
+
+  --text:#ffffff;
+  --subtext:#aaaaaa;
+
 }
 
 /* =========================
@@ -22,10 +37,19 @@
 ========================= */
 
 body{
-  background:#121212;
-  color:white;
+
+  font-family:'Inter',sans-serif;
+
+  background:var(--bg);
+
+  color:var(--text);
+
   overflow-x:hidden;
+
   min-height:100vh;
+
+  -webkit-tap-highlight-color:transparent;
+
 }
 
 /* =========================
@@ -33,64 +57,66 @@ body{
 ========================= */
 
 .sidebar{
+
   position:fixed;
 
   top:0;
   left:0;
   bottom:0;
 
-  width:45px;
+  width:var(--sidebar-width);
 
   background:#000;
 
-  padding:15px 4px;
+  padding:18px 6px;
 
   z-index:1000;
 
   display:flex;
   flex-direction:column;
   align-items:center;
-}
 
-/* =========================
-   LOGO
-========================= */
+}
 
 .logo{
-  color:#1DB954;
 
-  font-size:11px;
+  color:var(--accent);
 
-  margin-bottom:30px;
+  font-size:13px;
 
-  text-align:center;
+  margin-bottom:35px;
+
 }
 
-/* =========================
-   MENU
-========================= */
-
 .sidebar ul{
+
   list-style:none;
 
   width:100%;
+
 }
 
 .sidebar li{
-  padding:12px 0;
 
-  font-size:11px;
+  padding:14px 0;
+
+  font-size:18px;
 
   text-align:center;
 
   cursor:pointer;
 
-  transition:0.3s;
+  border-radius:12px;
+
 }
 
 .sidebar li:hover,
 .sidebar li.active{
-  color:#1DB954;
+
+  background:var(--hover);
+
+  color:var(--accent);
+
 }
 
 /* =========================
@@ -98,31 +124,25 @@ body{
 ========================= */
 
 .main{
-  margin-left:45px;
 
-  width:calc(100% - 45px);
+  margin-left:var(--sidebar-width);
 
-  padding:15px 10px 220px 10px;
+  width:calc(100% - var(--sidebar-width));
 
-  overflow-y:auto;
+  padding:20px 15px 160px;
+
 }
-
-/* =========================
-   HIDDEN
-========================= */
 
 .hidden{
   display:none;
 }
 
-/* =========================
-   TITLE
-========================= */
-
 h2{
-  margin-bottom:10px;
 
-  font-size:20px;
+  font-size:24px;
+
+  margin-bottom:15px;
+
 }
 
 /* =========================
@@ -130,15 +150,16 @@ h2{
 ========================= */
 
 .song-list{
+
   display:grid;
 
-  grid-template-columns:repeat(2, 150px);
+  grid-template-columns:
+    repeat(auto-fit,minmax(140px,1fr));
 
   gap:15px;
 
   margin-top:20px;
 
-  justify-content:start;
 }
 
 /* =========================
@@ -146,31 +167,47 @@ h2{
 ========================= */
 
 .song-card{
-  width:150px;
 
-  background:#181818;
+  width:100%;
+
+  background:var(--card);
 
   padding:10px;
 
-  border-radius:15px;
-
-  overflow:hidden;
+  border-radius:18px;
 
   cursor:pointer;
 
-  transition:0.3s;
+  overflow:hidden;
 
-  box-shadow:0 4px 15px rgba(0,0,0,0.4);
+  box-shadow:
+    0 4px 12px rgba(0,0,0,0.3);
+
+  will-change:transform;
+
 }
 
 .song-card:hover{
-  background:#282828;
 
-  transform:translateY(-4px);
+  background:var(--hover);
+
+  transform:translateY(-5px);
+
+  box-shadow:
+    0 8px 25px rgba(29,185,84,0.2);
+
+}
+
+.song-card:active{
+
+  transform:scale(0.97);
+
 }
 
 .song-card.active{
-  border:2px solid #1DB954;
+
+  border:2px solid var(--accent);
+
 }
 
 /* =========================
@@ -178,15 +215,17 @@ h2{
 ========================= */
 
 .song-card img{
+
   width:100%;
 
-  height:115px;
+  aspect-ratio:1/1;
 
   object-fit:cover;
 
-  border-radius:10px;
+  border-radius:12px;
 
   display:block;
+
 }
 
 /* =========================
@@ -194,17 +233,21 @@ h2{
 ========================= */
 
 .song-card h3{
-  margin-top:8px;
 
-  margin-bottom:4px;
+  margin-top:10px;
 
-  font-size:14px;
+  font-size:15px;
+
 }
 
 .song-card p{
-  color:#aaa;
 
-  font-size:11px;
+  margin-top:4px;
+
+  font-size:12px;
+
+  color:var(--subtext);
+
 }
 
 /* =========================
@@ -212,21 +255,37 @@ h2{
 ========================= */
 
 #searchInput{
+
   width:100%;
 
-  padding:12px;
+  padding:13px;
 
   border:none;
 
-  border-radius:10px;
+  border-radius:12px;
 
-  margin-top:20px;
+  background:var(--card);
 
-  background:#282828;
-
-  color:white;
+  color:var(--text);
 
   font-size:14px;
+
+  outline:none;
+
+}
+
+#searchInput:focus{
+
+  border:1px solid var(--accent);
+
+}
+
+.empty-state{
+
+  color:var(--subtext);
+
+  font-size:14px;
+
 }
 
 /* =========================
@@ -234,103 +293,60 @@ h2{
 ========================= */
 
 .player{
+
   position:fixed;
 
+  left:var(--sidebar-width);
+  right:0;
   bottom:0;
 
-  left:45px;
+  background:
+    rgba(24,24,24,0.92);
 
-  right:0;
+  backdrop-filter:blur(12px);
 
-  background:#181818;
+  border-top:
+    1px solid rgba(255,255,255,0.08);
 
-  border-top:1px solid #333;
-
-  padding:10px;
+  padding:12px;
 
   display:flex;
-
   flex-direction:column;
-
   align-items:center;
 
-  justify-content:center;
-
-  gap:8px;
+  gap:10px;
 
   z-index:999;
+
 }
 
-/* =========================
-   CONTROLS
-========================= */
+.player-top{
 
-.controls{
   display:flex;
 
   align-items:center;
 
-  justify-content:center;
-
   gap:12px;
+
+  width:100%;
+
+  max-width:320px;
+
 }
 
 /* =========================
-   PLAY BUTTON
+   COVER
 ========================= */
 
-#playBtn{
-  background:#1DB954;
+#cover{
 
-  border:none;
+  width:58px;
+  height:58px;
 
-  width:40px;
-  height:40px;
+  object-fit:cover;
 
-  border-radius:50%;
+  border-radius:14px;
 
-  color:white;
-
-  font-size:15px;
-
-  cursor:pointer;
-
-  transition:0.3s;
-}
-
-#playBtn:hover{
-  transform:scale(1.08);
-}
-
-/* =========================
-   NEXT PREV
-========================= */
-
-#prevBtn,
-#nextBtn{
-  background:#282828;
-
-  border:none;
-
-  width:32px;
-  height:32px;
-
-  border-radius:50%;
-
-  color:white;
-
-  font-size:12px;
-
-  cursor:pointer;
-
-  transition:0.3s;
-}
-
-#prevBtn:hover,
-#nextBtn:hover{
-  background:#1DB954;
-
-  transform:scale(1.08);
 }
 
 /* =========================
@@ -338,17 +354,101 @@ h2{
 ========================= */
 
 .song-info{
-  text-align:center;
+
+  overflow:hidden;
+
 }
 
 .song-info h4{
-  font-size:12px;
+
+  font-size:14px;
+
+  white-space:nowrap;
+
+  overflow:hidden;
+
+  text-overflow:ellipsis;
+
 }
 
 .song-info p{
-  font-size:10px;
 
-  color:#aaa;
+  margin-top:3px;
+
+  font-size:11px;
+
+  color:var(--subtext);
+
+}
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls{
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  gap:14px;
+
+}
+
+#playBtn{
+
+  width:45px;
+  height:45px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:var(--accent);
+
+  color:white;
+
+  font-size:16px;
+
+  cursor:pointer;
+
+}
+
+#playBtn:hover{
+
+  transform:scale(1.08);
+
+}
+
+#prevBtn,
+#nextBtn{
+
+  width:35px;
+  height:35px;
+
+  border:none;
+
+  border-radius:50%;
+
+  background:var(--hover);
+
+  color:white;
+
+  font-size:13px;
+
+  cursor:pointer;
+
+}
+
+#prevBtn:hover,
+#nextBtn:hover{
+
+  background:var(--accent);
+
+  transform:scale(1.08);
+
 }
 
 /* =========================
@@ -356,9 +456,10 @@ h2{
 ========================= */
 
 .progress-container{
-  width:85%;
 
-  max-width:280px;
+  width:100%;
+
+  max-width:320px;
 
   height:5px;
 
@@ -369,14 +470,19 @@ h2{
   overflow:hidden;
 
   cursor:pointer;
+
 }
 
 .progress{
+
   width:0%;
 
   height:100%;
 
-  background:#1DB954;
+  background:var(--accent);
+
+  transition:width 0.1s linear;
+
 }
 
 /* =========================
@@ -384,29 +490,32 @@ h2{
 ========================= */
 
 .time{
-  width:85%;
 
-  max-width:280px;
+  width:100%;
+
+  max-width:320px;
 
   display:flex;
 
   justify-content:space-between;
 
-  font-size:9px;
+  font-size:10px;
 
-  color:#aaa;
+  color:var(--subtext);
+
 }
 
 /* =========================
    MOBILE
 ========================= */
 
-@media (max-width:768px){
+@media(max-width:768px){
 
   .song-list{
-    grid-template-columns:repeat(2, 150px);
 
-    justify-content:start;
+    grid-template-columns:
+      repeat(2,minmax(120px,1fr));
+
   }
 
 }

@@ -76,6 +76,8 @@ audio.addEventListener("timeupdate", updateProgress);
 
 function updateProgress() {
   const { duration, currentTime } = audio;
+  if (isNaN(duration)) return; // Prevent errors if duration isn't loaded yet
+
   const progressPercent = (currentTime / duration) * 100;
   progress.style.width = `${progressPercent}%`;
 
@@ -93,9 +95,7 @@ function updateProgress() {
   if (durationSeconds < 10) {
     durationSeconds = "0" + durationSeconds;
   }
-  if (durationSeconds) {
-    durationEl.innerText = `${durationMinutes}:${durationSeconds}`;
-  }
+  durationEl.innerText = `${durationMinutes}:${durationSeconds}`;
 }
 
 // Seek within the song when clicking on progress bar
@@ -107,3 +107,28 @@ function setProgress(e) {
     audio.currentTime = (clickX / width) * duration;
   }
 }
+// When cloning search results, add click event for playing song
+searchResult.querySelectorAll(".song-card").forEach(card => {
+  card.onclick = () => {
+    const songSrc = card.getAttribute("onclick").match(/'([^']+)'/)[1]; // Extract song path
+    const songTitle = card.querySelector("h3").innerText;
+    const songArtist = card.querySelector("p").innerText;
+    playSong(songSrc, songTitle, songArtist);
+  };
+});
+searchInput.addEventListener("keyup", () => {
+  let filter = searchInput.value.toLowerCase();
+  let homeCards = document.querySelectorAll("#homePage .song-card");
+  let searchResult = document.getElementById("searchResult");
+  searchResult.innerHTML = "";
+
+  if (filter === "") return; // Exit if search is empty
+
+  homeCards.forEach(card => {
+    let title = card.querySelector("h3").innerText.toLowerCase();
+    if (title.includes(filter)) {
+      let clone = card.cloneNode(true);
+      searchResult.appendChild(clone);
+    }
+  });
+});

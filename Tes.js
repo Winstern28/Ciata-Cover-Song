@@ -1,16 +1,26 @@
-const audio = document.getElementById("audio");
+const audio =
+  document.getElementById("audio");
 
-const title = document.getElementById("title");
+const title =
+  document.getElementById("title");
 
-const artist = document.getElementById("artist");
+const artist =
+  document.getElementById("artist");
 
-const playBtn = document.getElementById("playBtn");
+const cover =
+  document.getElementById("cover");
 
-const prevBtn = document.getElementById("prevBtn");
+const playBtn =
+  document.getElementById("playBtn");
 
-const nextBtn = document.getElementById("nextBtn");
+const prevBtn =
+  document.getElementById("prevBtn");
 
-const progress = document.getElementById("progress");
+const nextBtn =
+  document.getElementById("nextBtn");
+
+const progress =
+  document.getElementById("progress");
 
 const progressContainer =
   document.querySelector(".progress-container");
@@ -33,12 +43,16 @@ const homeBtn =
 const searchBtn =
   document.getElementById("searchBtn");
 
-/* SONG CARDS */
+/* =========================
+   SONG CARDS
+========================= */
 
 const songCards =
   document.querySelectorAll(".song-card");
 
-/* CREATE SONG ARRAY AUTOMATICALLY */
+/* =========================
+   SONG ARRAY
+========================= */
 
 const songs = [];
 
@@ -46,21 +60,37 @@ songCards.forEach(card => {
 
   songs.push({
 
-    title: card.dataset.title,
+    title:
+      card.dataset.title,
 
-    artist: card.dataset.artist,
+    artist:
+      card.dataset.artist,
 
-    src: card.dataset.song
+    src:
+      card.dataset.song,
+
+    cover:
+      card.querySelector("img").src
 
   });
 
 });
 
+/* =========================
+   DEFAULT
+========================= */
+
 let currentSongIndex = 0;
 
-/* PLAY SONG */
+audio.volume = 0.7;
+
+/* =========================
+   PLAY SONG
+========================= */
 
 function playSong(index){
+
+  audio.pause();
 
   currentSongIndex = index;
 
@@ -68,22 +98,27 @@ function playSong(index){
 
   audio.src = song.src;
 
-  audio.load();
+  title.innerText =
+    song.title;
 
-  title.innerText = song.title;
+  artist.innerText =
+    song.artist;
 
-  artist.innerText = song.artist;
+  cover.src =
+    song.cover;
 
   audio.play()
-    .catch(error => console.log(error));
-
-  playBtn.innerText = "⏸";
+    .catch(error =>
+      console.log(error)
+    );
 
   setActiveSong(song.src);
 
 }
 
-/* ACTIVE SONG */
+/* =========================
+   ACTIVE SONG
+========================= */
 
 function setActiveSong(song){
 
@@ -99,31 +134,41 @@ function setActiveSong(song){
 
   });
 
+  document
+    .querySelector(".song-card.active")
+    ?.scrollIntoView({
+
+      behavior:"smooth",
+
+      block:"center"
+
+    });
+
 }
 
-/* TOGGLE PLAY */
+/* =========================
+   TOGGLE PLAY
+========================= */
 
 function togglePlay(){
 
-  if(audio.src === "") return;
+  if(!audio.src) return;
 
   if(audio.paused){
 
     audio.play();
 
-    playBtn.innerText = "⏸";
-
   }else{
 
     audio.pause();
-
-    playBtn.innerText = "▶";
 
   }
 
 }
 
-/* NEXT SONG */
+/* =========================
+   NEXT SONG
+========================= */
 
 function nextSong(){
 
@@ -139,7 +184,9 @@ function nextSong(){
 
 }
 
-/* PREVIOUS SONG */
+/* =========================
+   PREVIOUS SONG
+========================= */
 
 function prevSong(){
 
@@ -147,7 +194,8 @@ function prevSong(){
 
   if(currentSongIndex < 0){
 
-    currentSongIndex = songs.length - 1;
+    currentSongIndex =
+      songs.length - 1;
 
   }
 
@@ -155,47 +203,95 @@ function prevSong(){
 
 }
 
-/* PLAY BUTTON */
+/* =========================
+   BUTTONS
+========================= */
 
-playBtn.addEventListener("click", togglePlay);
+playBtn.addEventListener(
+  "click",
+  togglePlay
+);
 
-/* NEXT / PREV BUTTON */
+nextBtn.addEventListener(
+  "click",
+  nextSong
+);
 
-nextBtn.addEventListener("click", nextSong);
+prevBtn.addEventListener(
+  "click",
+  prevSong
+);
 
-prevBtn.addEventListener("click", prevSong);
+/* =========================
+   AUDIO EVENTS
+========================= */
 
-/* UPDATE PLAY BUTTON */
+audio.addEventListener(
+  "pause",
+  () => {
 
-audio.addEventListener("pause", () => {
+    playBtn.innerText = "▶";
 
-  playBtn.innerText = "▶";
+  }
+);
 
-});
+audio.addEventListener(
+  "play",
+  () => {
 
-audio.addEventListener("play", () => {
+    playBtn.innerText = "⏸";
 
-  playBtn.innerText = "⏸";
+  }
+);
 
-});
+audio.addEventListener(
+  "ended",
+  nextSong
+);
 
-/* AUTO NEXT SONG */
+audio.addEventListener(
+  "error",
+  () => {
 
-audio.addEventListener("ended", nextSong);
+    alert(
+      "Lagu gagal dimuat"
+    );
 
-/* CLICK SONG CARD */
+  }
+);
 
-songCards.forEach((card, index) => {
+audio.addEventListener(
+  "waiting",
+  () => {
 
-  card.addEventListener("click", () => {
+    title.innerText =
+      "Loading...";
 
-    playSong(index);
+  }
+);
 
-  });
+/* =========================
+   CLICK SONG CARD
+========================= */
 
-});
+songCards.forEach(
+  (card,index) => {
 
-/* PAGE SWITCH */
+    card.addEventListener(
+      "click",
+      () => {
+
+        playSong(index);
+
+      }
+    );
+
+  }
+);
+
+/* =========================
+   PAGE SWITCH
+========================= */
 
 function showPage(page){
 
@@ -233,51 +329,108 @@ function showPage(page){
 
 }
 
-homeBtn.addEventListener("click", () => {
+homeBtn.addEventListener(
+  "click",
+  () => {
 
-  showPage("home");
+    showPage("home");
 
-});
+  }
+);
 
-searchBtn.addEventListener("click", () => {
+searchBtn.addEventListener(
+  "click",
+  () => {
 
-  showPage("search");
+    showPage("search");
 
-});
+  }
+);
 
-/* SEARCH */
+/* =========================
+   SEARCH
+========================= */
 
-searchInput.addEventListener("keyup", () => {
+searchInput.addEventListener(
+  "input",
+  () => {
 
-  const filter =
-    searchInput.value.toLowerCase();
+    const filter =
+      searchInput.value
+      .toLowerCase();
 
-  searchResult.innerHTML = "";
+    searchResult.innerHTML = "";
 
-  if(filter === "") return;
+    if(filter === ""){
 
-  songs.forEach((song, index) => {
+      searchResult.innerHTML = `
+        <p class="empty-state">
+          Cari lagu favoritmu...
+        </p>
+      `;
 
-    if(song.title.toLowerCase().includes(filter)){
-
-      const clone =
-        songCards[index].cloneNode(true);
-
-      clone.addEventListener("click", () => {
-
-        playSong(index);
-
-      });
-
-      searchResult.appendChild(clone);
+      return;
 
     }
 
-  });
+    let found = false;
 
-});
+    songs.forEach(
+      (song,index) => {
 
-/* UPDATE PROGRESS */
+        if(
+
+          song.title
+          .toLowerCase()
+          .includes(filter)
+
+          ||
+
+          song.artist
+          .toLowerCase()
+          .includes(filter)
+
+        ){
+
+          found = true;
+
+          const clone =
+            songCards[index]
+            .cloneNode(true);
+
+          clone.addEventListener(
+            "click",
+            () => {
+
+              playSong(index);
+
+            }
+          );
+
+          searchResult
+            .appendChild(clone);
+
+        }
+
+      }
+    );
+
+    if(!found){
+
+      searchResult.innerHTML = `
+        <p class="empty-state">
+          Lagu tidak ditemukan
+        </p>
+      `;
+
+    }
+
+  }
+);
+
+/* =========================
+   UPDATE PROGRESS
+========================= */
 
 audio.addEventListener(
   "timeupdate",
@@ -337,9 +490,12 @@ function updateProgress(){
 
 }
 
-/* SEEK SONG */
+/* =========================
+   SEEK SONG
+========================= */
 
-progressContainer.addEventListener(
+progressContainer
+.addEventListener(
   "click",
   setProgress
 );
@@ -355,10 +511,11 @@ function setProgress(e){
   const duration =
     audio.duration;
 
-  if(duration){
+  if(!isNaN(duration)){
 
     audio.currentTime =
-      (clickX / width) * duration;
+      (clickX / width)
+      * duration;
 
   }
 

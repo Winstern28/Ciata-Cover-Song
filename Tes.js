@@ -6,6 +6,10 @@ const artist = document.getElementById("artist");
 
 const playBtn = document.getElementById("playBtn");
 
+const prevBtn = document.getElementById("prevBtn");
+
+const nextBtn = document.getElementById("nextBtn");
+
 const progress = document.getElementById("progress");
 
 const progressContainer =
@@ -23,41 +27,42 @@ const searchInput =
 const searchResult =
   document.getElementById("searchResult");
 
-/* SONG CARDS */
+const homeBtn =
+  document.getElementById("homeBtn");
 
-const songCards =
-  document.querySelectorAll(".song-card");
-  const prevBtn =
-  document.getElementById("prevBtn");
-
-const nextBtn =
-  document.getElementById("nextBtn");
+const searchBtn =
+  document.getElementById("searchBtn");
 
 /* SONG DATA */
 
 const songs = [
 
   {
-    title:"SWAY",
-    artist:"Ciata",
-    src:"Song/sway.m4a"
+    title: "SWAY",
+    artist: "Ciata",
+    src: "Song/sway.m4a"
   },
 
   {
-    title:"ROCKABYE",
-    artist:"Ciata",
-    src:"Song/Rockabye.m4a"
+    title: "ROCKABYE",
+    artist: "Ciata",
+    src: "Song/Rockabye.m4a"
   },
 
   {
-    title:"STAYWITHME",
-    artist:"Ciata",
-    src:"Song/Staywithme.m4a"
+    title: "STAYWITHME",
+    artist: "Ciata",
+    src: "Song/Staywithme.m4a"
   }
 
 ];
 
 let currentSongIndex = 0;
+
+/* SONG CARDS */
+
+const songCards =
+  document.querySelectorAll(".song-card");
 
 /* PLAY SONG */
 
@@ -122,11 +127,45 @@ function togglePlay(){
 
 }
 
+/* NEXT SONG */
+
+function nextSong(){
+
+  currentSongIndex++;
+
+  if(currentSongIndex >= songs.length){
+    currentSongIndex = 0;
+  }
+
+  playSong(currentSongIndex);
+
+}
+
+/* PREVIOUS SONG */
+
+function prevSong(){
+
+  currentSongIndex--;
+
+  if(currentSongIndex < 0){
+    currentSongIndex = songs.length - 1;
+  }
+
+  playSong(currentSongIndex);
+
+}
+
 /* PLAY BUTTON */
 
 playBtn.addEventListener("click", togglePlay);
 
-/* UPDATE BUTTON */
+/* NEXT / PREV BUTTON */
+
+nextBtn.addEventListener("click", nextSong);
+
+prevBtn.addEventListener("click", prevSong);
+
+/* UPDATE BUTTON ICON */
 
 audio.addEventListener("pause", () => {
   playBtn.innerText = "▶";
@@ -136,44 +175,23 @@ audio.addEventListener("play", () => {
   playBtn.innerText = "⏸";
 });
 
-/* SONG ENDED */
+/* AUTO NEXT SONG */
 
-audio.addEventListener("ended", () => {
-
-  playBtn.innerText = "▶";
-
-  progress.style.width = "0%";
-
-});
+audio.addEventListener("ended", nextSong);
 
 /* CLICK SONG CARD */
 
-songCards.forEach(card => {
+songCards.forEach((card, index) => {
 
   card.addEventListener("click", () => {
 
-    const song =
-      card.dataset.song;
-
-    const songTitle =
-      card.dataset.title;
-
-    const songArtist =
-      card.dataset.artist;
-
-    playSong(song, songTitle, songArtist);
+    playSong(index);
 
   });
 
 });
 
 /* PAGE SWITCH */
-
-const homeBtn =
-  document.getElementById("homeBtn");
-
-const searchBtn =
-  document.getElementById("searchBtn");
 
 function showPage(page){
 
@@ -230,25 +248,16 @@ searchInput.addEventListener("keyup", () => {
 
   if(filter === "") return;
 
-  songCards.forEach(card => {
+  songs.forEach((song, index) => {
 
-    const songTitle =
-      card.querySelector("h3")
-      .innerText
-      .toLowerCase();
-
-    if(songTitle.includes(filter)){
+    if(song.title.toLowerCase().includes(filter)){
 
       const clone =
-        card.cloneNode(true);
+        songCards[index].cloneNode(true);
 
       clone.addEventListener("click", () => {
 
-        playSong(
-          clone.dataset.song,
-          clone.dataset.title,
-          clone.dataset.artist
-        );
+        playSong(index);
 
       });
 

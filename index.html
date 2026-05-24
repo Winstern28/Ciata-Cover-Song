@@ -1,43 +1,71 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
+
   <title>CIATA PLAYLIST</title>
 
-  <link rel="stylesheet" href="Tes.css">
+  <link rel="stylesheet" href="Tes.css" />
+
 </head>
+
 <body>
 
   <!-- SIDEBAR -->
+
   <div class="sidebar">
 
     <h1 class="logo">CIATA</h1>
 
     <ul>
-      <li id="homeBtn" class="active">🏠 Home</li>
-      <li id="searchBtn">🔍 Search</li>
+
+      <li id="homeBtn" class="active">
+        🏠 Home
+      </li>
+
+      <li id="searchBtn">
+        🔍 Search
+      </li>
+
     </ul>
 
   </div>
 
   <!-- MAIN -->
+
   <div class="main">
 
-    <!-- HOME -->
+    <!-- HOME PAGE -->
+
     <div id="homePage">
 
       <h2>Home</h2>
 
       <div class="song-list">
 
-        <!-- SONG -->
-        <div class="song-card"
-          data-song="Song/sway.m4a"
-          data-title="SWAY"
-          data-artist="Ciata">
+        <!-- SONG 1 -->
 
-          <img src="img/Sway.jpg" alt="Sway">
+        <div
+          class="song-card"
+
+          data-song="Song/sway.m4a"
+
+          data-title="SWAY"
+
+          data-artist="Ciata"
+        >
+
+          <img
+            src="img/Sway.jpg"
+
+            alt="Sway Cover"
+          />
 
           <h3>SWAY</h3>
 
@@ -45,13 +73,23 @@
 
         </div>
 
-        <!-- SONG -->
-        <div class="song-card"
-          data-song="Song/Rockabye.m4a"
-          data-title="ROCKABYE"
-          data-artist="Ciata">
+        <!-- SONG 2 -->
 
-          <img src="img/Rockabye.jpg" alt="Rockabye">
+        <div
+          class="song-card"
+
+          data-song="Song/Rockabye.m4a"
+
+          data-title="ROCKABYE"
+
+          data-artist="Ciata"
+        >
+
+          <img
+            src="img/Rockabye.jpg"
+
+            alt="Rockabye Cover"
+          />
 
           <h3>ROCKABYE</h3>
 
@@ -59,13 +97,23 @@
 
         </div>
 
-        <!-- SONG -->
-        <div class="song-card"
-          data-song="Song/Staywithme.m4a"
-          data-title="STAYWITHME"
-          data-artist="Ciata">
+        <!-- SONG 3 -->
 
-          <img src="img/Staywithme.jpg" alt="Staywithme">
+        <div
+          class="song-card"
+
+          data-song="Song/Staywithme.m4a"
+
+          data-title="STAYWITHME"
+
+          data-artist="Ciata"
+        >
+
+          <img
+            src="img/Staywithme.jpg"
+
+            alt="Staywithme Cover"
+          />
 
           <h3>STAYWITHME</h3>
 
@@ -73,65 +121,109 @@
 
         </div>
 
+        <!-- ADD NEW SONGS HERE -->
+
       </div>
 
     </div>
 
-    <!-- SEARCH -->
-    <div id="searchPage" class="hidden">
+    <!-- SEARCH PAGE -->
+
+    <div
+      id="searchPage"
+
+      class="hidden"
+    >
 
       <h2>Search Lagu</h2>
 
       <input
         type="text"
-        id="searchInput"
-        placeholder="Cari lagu..."
-      >
 
-      <div class="song-list" id="searchResult"></div>
+        id="searchInput"
+
+        placeholder="Cari lagu..."
+      />
+
+      <div
+        class="song-list"
+
+        id="searchResult"
+      ></div>
 
     </div>
 
   </div>
 
   <!-- PLAYER -->
+
   <div class="player">
+
+    <!-- CONTROLS -->
 
     <div class="controls">
 
-  <button id="prevBtn">⏮</button>
+      <button id="prevBtn">
+        ⏮
+      </button>
 
-  <button id="playBtn">▶</button>
+      <button id="playBtn">
+        ▶
+      </button>
 
-  <button id="nextBtn">⏭</button>
+      <button id="nextBtn">
+        ⏭
+      </button>
 
-</div>
+    </div>
+
+    <!-- SONG INFO -->
 
     <div class="song-info">
 
-      <h4 id="title">Belum Ada Lagu</h4>
+      <h4 id="title">
+        Belum Ada Lagu
+      </h4>
 
-      <p id="artist">-</p>
+      <p id="artist">
+        -
+      </p>
 
     </div>
 
     <!-- PROGRESS -->
+
     <div class="progress-container">
 
-      <div class="progress" id="progress"></div>
+      <div
+        class="progress"
+
+        id="progress"
+      ></div>
 
     </div>
 
     <!-- TIME -->
+
     <div class="time">
 
-      <span id="currentTime">0:00</span>
+      <span id="currentTime">
+        0:00
+      </span>
 
-      <span id="duration">0:00</span>
+      <span id="duration">
+        0:00
+      </span>
 
     </div>
 
-    <audio id="audio" preload="metadata"></audio>
+    <!-- AUDIO -->
+
+    <audio
+      id="audio"
+
+      preload="metadata"
+    ></audio>
 
   </div>
 

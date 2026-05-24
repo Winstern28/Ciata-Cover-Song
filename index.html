@@ -2,83 +2,129 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>CIATA PLAYLIST</title>
-  <link rel="stylesheet" href="Tes.css" />
+
+  <link rel="stylesheet" href="Tes.css">
 </head>
 <body>
 
   <!-- SIDEBAR -->
   <div class="sidebar">
+
     <h1 class="logo">CIATA</h1>
+
     <ul>
-      <li onclick="showPage('home')">🏠 Home</li>
-      <li onclick="showPage('search')">🔍 Search</li>
+      <li id="homeBtn" class="active">🏠 Home</li>
+      <li id="searchBtn">🔍 Search</li>
     </ul>
+
   </div>
 
   <!-- MAIN -->
   <div class="main">
 
-    <!-- HOME PAGE -->
+    <!-- HOME -->
     <div id="homePage">
+
       <h2>Home</h2>
+
       <div class="song-list">
 
-        <!-- SONG 1 -->
-        <div class="song-card" onclick="playSong('Song/sway.m4a','SWAY','Ciata')">
-          <img src="img/Sway.jpg" alt="Sway Cover" />
+        <!-- SONG -->
+        <div class="song-card"
+          data-song="Song/sway.m4a"
+          data-title="SWAY"
+          data-artist="Ciata">
+
+          <img src="img/Sway.jpg" alt="Sway">
+
           <h3>SWAY</h3>
+
           <p>Ciata</p>
+
         </div>
 
-        <!-- SONG 2 -->
-        <div class="song-card" onclick="playSong('Song/Rockabye.m4a','ROCKABYE','Ciata')">
-          <img src="img/Rockabye.jpg" alt="Rockabye Cover" />
+        <!-- SONG -->
+        <div class="song-card"
+          data-song="Song/Rockabye.m4a"
+          data-title="ROCKABYE"
+          data-artist="Ciata">
+
+          <img src="img/Rockabye.jpg" alt="Rockabye">
+
           <h3>ROCKABYE</h3>
+
           <p>Ciata</p>
+
         </div>
 
-        <!-- SONG 3 -->
-        <div class="song-card" onclick="playSong('Song/Staywithme.m4a','STAYWITHME','Ciata')">
-          <img src="img/Staywithme.jpg" alt="Stay with Me Cover" />
+        <!-- SONG -->
+        <div class="song-card"
+          data-song="Song/Staywithme.m4a"
+          data-title="STAYWITHME"
+          data-artist="Ciata">
+
+          <img src="img/Staywithme.jpg" alt="Staywithme">
+
           <h3>STAYWITHME</h3>
+
           <p>Ciata</p>
+
         </div>
 
       </div>
+
     </div>
 
-    <!-- SEARCH PAGE -->
+    <!-- SEARCH -->
     <div id="searchPage" class="hidden">
+
       <h2>Search Lagu</h2>
-      <input type="text" id="searchInput" placeholder="Cari lagu..." />
+
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="Cari lagu..."
+      >
+
       <div class="song-list" id="searchResult"></div>
+
     </div>
 
   </div>
 
   <!-- PLAYER -->
   <div class="player">
-    <button id="playBtn" onclick="togglePlay()">▶</button>
+
+    <button id="playBtn">▶</button>
 
     <div class="song-info">
+
       <h4 id="title">Belum Ada Lagu</h4>
+
       <p id="artist">-</p>
+
     </div>
 
-    <!-- PROGRESS BAR -->
-    <div class="progress-container" onclick="setProgress(event)">
+    <!-- PROGRESS -->
+    <div class="progress-container">
+
       <div class="progress" id="progress"></div>
+
     </div>
 
     <!-- TIME -->
     <div class="time">
+
       <span id="currentTime">0:00</span>
+
       <span id="duration">0:00</span>
+
     </div>
 
-    <audio id="audio"></audio>
+    <audio id="audio" preload="metadata"></audio>
+
   </div>
 
   <script src="Tes.js"></script>

@@ -61,22 +61,26 @@ let currentSongIndex = 0;
 
 /* PLAY SONG */
 
-function playSong(song, songTitle, songArtist){
+function playSong(index){
 
-  audio.src = song;
+  currentSongIndex = index;
+
+  const song = songs[index];
+
+  audio.src = song.src;
 
   audio.load();
 
-  title.innerText = songTitle;
+  title.innerText = song.title;
 
-  artist.innerText = songArtist;
+  artist.innerText = song.artist;
 
   audio.play()
     .catch(error => console.log(error));
 
   playBtn.innerText = "⏸";
 
-  setActiveSong(song);
+  setActiveSong(song.src);
 
 }
 

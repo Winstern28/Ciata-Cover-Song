@@ -27,6 +27,37 @@ const searchResult =
 
 const songCards =
   document.querySelectorAll(".song-card");
+  const prevBtn =
+  document.getElementById("prevBtn");
+
+const nextBtn =
+  document.getElementById("nextBtn");
+
+/* SONG DATA */
+
+const songs = [
+
+  {
+    title:"SWAY",
+    artist:"Ciata",
+    src:"Song/sway.m4a"
+  },
+
+  {
+    title:"ROCKABYE",
+    artist:"Ciata",
+    src:"Song/Rockabye.m4a"
+  },
+
+  {
+    title:"STAYWITHME",
+    artist:"Ciata",
+    src:"Song/Staywithme.m4a"
+  }
+
+];
+
+let currentSongIndex = 0;
 
 /* PLAY SONG */
 

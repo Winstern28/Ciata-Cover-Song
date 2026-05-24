@@ -11,6 +11,26 @@
 
   <title>CIATA PLAYLIST</title>
 
+  <!-- FONT -->
+
+  <link
+    rel="preconnect"
+    href="https://fonts.googleapis.com"
+  />
+
+  <link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  />
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- CSS -->
+
   <link rel="stylesheet" href="Tes.css" />
 
 </head>
@@ -19,33 +39,40 @@
 
   <!-- SIDEBAR -->
 
-  <div class="sidebar">
+  <aside class="sidebar">
 
-    <h1 class="logo">CIATA</h1>
+    <h1 class="logo">
+      CIATA
+    </h1>
 
     <ul>
 
-      <li id="homeBtn" class="active">
-        🏠 Home
+      <li
+        id="homeBtn"
+        class="active"
+      >
+        🏠
       </li>
 
       <li id="searchBtn">
-        🔍 Search
+        🔍
       </li>
 
     </ul>
 
-  </div>
+  </aside>
 
   <!-- MAIN -->
 
-  <div class="main">
+  <main class="main">
 
     <!-- HOME PAGE -->
 
-    <div id="homePage">
+    <section id="homePage">
 
-      <h2>Home</h2>
+      <h2>
+        Home
+      </h2>
 
       <div class="song-list">
 
@@ -64,12 +91,16 @@
           <img
             src="img/Sway.jpg"
 
-            alt="Sway Cover"
+            alt="Cover lagu SWAY"
           />
 
-          <h3>SWAY</h3>
+          <h3>
+            SWAY
+          </h3>
 
-          <p>Ciata</p>
+          <p>
+            Ciata
+          </p>
 
         </div>
 
@@ -88,12 +119,16 @@
           <img
             src="img/Rockabye.jpg"
 
-            alt="Rockabye Cover"
+            alt="Cover lagu ROCKABYE"
           />
 
-          <h3>ROCKABYE</h3>
+          <h3>
+            ROCKABYE
+          </h3>
 
-          <p>Ciata</p>
+          <p>
+            Ciata
+          </p>
 
         </div>
 
@@ -112,82 +147,118 @@
           <img
             src="img/Staywithme.jpg"
 
-            alt="Staywithme Cover"
+            alt="Cover lagu STAYWITHME"
           />
 
-          <h3>STAYWITHME</h3>
+          <h3>
+            STAYWITHME
+          </h3>
 
-          <p>Ciata</p>
+          <p>
+            Ciata
+          </p>
 
         </div>
 
-        <!-- ADD NEW SONGS HERE -->
-
       </div>
 
-    </div>
+    </section>
 
     <!-- SEARCH PAGE -->
 
-    <div
+    <section
       id="searchPage"
-
       class="hidden"
     >
 
-      <h2>Search Lagu</h2>
+      <h2>
+        Search Lagu
+      </h2>
 
       <input
         type="text"
 
         id="searchInput"
 
-        placeholder="Cari lagu..."
+        placeholder="Cari lagu atau artist..."
       />
 
       <div
-        class="song-list"
-
         id="searchResult"
-      ></div>
+        class="song-list"
+      >
 
-    </div>
+        <p class="empty-state">
+          Cari lagu favoritmu...
+        </p>
 
-  </div>
+      </div>
+
+    </section>
+
+  </main>
 
   <!-- PLAYER -->
 
-  <div class="player">
+  <footer class="player">
+
+    <!-- SONG INFO -->
+
+    <div class="player-top">
+
+      <!-- COVER -->
+
+      <img
+        id="cover"
+
+        src="img/Sway.jpg"
+
+        alt="Cover Lagu"
+      />
+
+      <!-- TEXT -->
+
+      <div class="song-info">
+
+        <h4 id="title">
+          Click the song u want to play
+        </h4>
+
+        <p id="artist">
+          -
+        </p>
+
+      </div>
+
+    </div>
 
     <!-- CONTROLS -->
 
     <div class="controls">
 
-      <button id="prevBtn">
+      <button
+        id="prevBtn"
+
+        aria-label="Previous Song"
+      >
         ⏮
       </button>
 
-      <button id="playBtn">
+      <button
+        id="playBtn"
+
+        aria-label="Play Song"
+      >
         ▶
       </button>
 
-      <button id="nextBtn">
+      <button
+        id="nextBtn"
+
+        aria-label="Next Song"
+      >
         ⏭
       </button>
-
-    </div>
-
-    <!-- SONG INFO -->
-
-    <div class="song-info">
-
-      <h4 id="title">
-        Click the song u want to play
-      </h4>
-
-      <p id="artist">
-        -
-      </p>
 
     </div>
 
@@ -197,7 +268,6 @@
 
       <div
         class="progress"
-
         id="progress"
       ></div>
 
@@ -225,7 +295,9 @@
       preload="metadata"
     ></audio>
 
-  </div>
+  </footer>
+
+  <!-- SCRIPT -->
 
   <script src="Tes.js"></script>
 

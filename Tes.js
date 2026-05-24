@@ -33,36 +33,30 @@ const homeBtn =
 const searchBtn =
   document.getElementById("searchBtn");
 
-/* SONG DATA */
-
-const songs = [
-
-  {
-    title: "SWAY",
-    artist: "Ciata",
-    src: "Song/sway.m4a"
-  },
-
-  {
-    title: "ROCKABYE",
-    artist: "Ciata",
-    src: "Song/Rockabye.m4a"
-  },
-
-  {
-    title: "STAYWITHME",
-    artist: "Ciata",
-    src: "Song/Staywithme.m4a"
-  }
-
-];
-
-let currentSongIndex = 0;
-
 /* SONG CARDS */
 
 const songCards =
   document.querySelectorAll(".song-card");
+
+/* CREATE SONG ARRAY AUTOMATICALLY */
+
+const songs = [];
+
+songCards.forEach(card => {
+
+  songs.push({
+
+    title: card.dataset.title,
+
+    artist: card.dataset.artist,
+
+    src: card.dataset.song
+
+  });
+
+});
+
+let currentSongIndex = 0;
 
 /* PLAY SONG */
 
@@ -98,7 +92,9 @@ function setActiveSong(song){
     card.classList.remove("active");
 
     if(card.dataset.song === song){
+
       card.classList.add("active");
+
     }
 
   });
@@ -134,7 +130,9 @@ function nextSong(){
   currentSongIndex++;
 
   if(currentSongIndex >= songs.length){
+
     currentSongIndex = 0;
+
   }
 
   playSong(currentSongIndex);
@@ -148,7 +146,9 @@ function prevSong(){
   currentSongIndex--;
 
   if(currentSongIndex < 0){
+
     currentSongIndex = songs.length - 1;
+
   }
 
   playSong(currentSongIndex);
@@ -165,14 +165,18 @@ nextBtn.addEventListener("click", nextSong);
 
 prevBtn.addEventListener("click", prevSong);
 
-/* UPDATE BUTTON ICON */
+/* UPDATE PLAY BUTTON */
 
 audio.addEventListener("pause", () => {
+
   playBtn.innerText = "▶";
+
 });
 
 audio.addEventListener("play", () => {
+
   playBtn.innerText = "⏸";
+
 });
 
 /* AUTO NEXT SONG */
@@ -230,11 +234,15 @@ function showPage(page){
 }
 
 homeBtn.addEventListener("click", () => {
+
   showPage("home");
+
 });
 
 searchBtn.addEventListener("click", () => {
+
   showPage("search");
+
 });
 
 /* SEARCH */
@@ -300,8 +308,10 @@ function updateProgress(){
     Math.floor(currentTime % 60);
 
   if(currentSeconds < 10){
+
     currentSeconds =
       "0" + currentSeconds;
+
   }
 
   currentTimeEl.innerText =
@@ -316,8 +326,10 @@ function updateProgress(){
     Math.floor(duration % 60);
 
   if(durationSeconds < 10){
+
     durationSeconds =
       "0" + durationSeconds;
+
   }
 
   durationEl.innerText =
